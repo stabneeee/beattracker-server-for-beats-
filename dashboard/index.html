@@ -309,10 +309,10 @@ textarea.form-input { resize: vertical; min-height: 80px; }
 <script>
 // ─── CONFIG — URL RENDER FIXE ─────────────────────────────────────
 const RENDER_URL = 'https://beattracker-server-for-beats.onrender.com';
-const MY_GMAIL = 'stabneeez@gmail.com'; // ← TON ADRESSE GMAIL
+const MY_GMAIL = 'stabneeez@gmail.com';
 
 let SERVER_URL = localStorage.getItem('bt_server_url') || RENDER_URL;
-let REFRESH_INTERVAL = parseInt(localStorage.getItem('bt_refresh') || '30') * 1000;
+let REFRESH_INTERVAL = 5000; // Refresh toutes les 5 secondes
 let currentBeatId = null;
 let currentBeatEmail = '';
 let selectedFiles = [];
@@ -341,10 +341,7 @@ document.querySelectorAll('.nav-item').forEach(item => {
 // ─── Settings ────────────────────────────────────────────────────
 function saveSettings() {
   SERVER_URL = document.getElementById('setting-url').value.trim().replace(/\/$/, '');
-  const r = parseInt(document.getElementById('setting-refresh').value) || 30;
-  REFRESH_INTERVAL = r * 1000;
   localStorage.setItem('bt_server_url', SERVER_URL);
-  localStorage.setItem('bt_refresh', r);
   toast('Paramètres sauvegardés ✓', 'success');
   checkServer();
   loadBeats();
