@@ -1,11 +1,6 @@
 [build]
 builder = "nixpacks"
+buildCommand = "cd server && npm install"
 
 [deploy]
-startCommand = "npm install && node server.js"
-healthcheckPath = "/api/beats"
-restartPolicyType = "on_failure"
-restartPolicyMaxRetries = 3
-
-[[services]]
-name = "beattracker"
+startCommand = "node server/server.js"
